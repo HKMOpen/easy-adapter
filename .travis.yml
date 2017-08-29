@@ -1,20 +1,21 @@
 language: android
+env:
+    global:
+        # Using the new Container-Based Infrastructure
+        - sudo: false
+        # Turning off caching to avoid caching Issues
+        - cache: false
+        # Initiating clean Gradle output
+        - TERM=dumb
+        # Giving even more memory to Gradle JVM
+        - GRADLE_OPTS="-Xmx2048m -XX:MaxPermSize=1024m"
 android:
     components:
-        - build-tools-21.1.0
-        - android-21
+        - build-tools-23.0.1
+        - android-23
         - extra-android-m2repository
         - extra-google-m2repository
         - extra-android-support
     licenses:
         - android-sdk-license-5be876d5
-before_install:
-    # Create and start emulator
-    - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
-    - emulator -avd test -no-skin -no-audio -no-window &
-    - export TERM=dumb
-    - ./gradlew -v
-    - uname -a
-before_script:
-  - ./wait_for_emulator
-script: ./gradlew clean library:test demo:connectedCheck
+script: ./gradlew clean check

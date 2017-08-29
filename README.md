@@ -1,3 +1,8 @@
+Deprecated
+===========
+
+Due to the growing use of the [RecyclerView](http://developer.android.com/reference/android/support/v7/widget/RecyclerView.html) and the [RecyclerView.Adapter](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.Adapter.html) provided adapter class, Easy-Adapter is now deprecated. Whilst the current version still remains usable, there will no longer be any new development taking place.
+
 EasyAdapter For Android
 ===========
 
@@ -16,7 +21,7 @@ Setup
 #### 1. Gradle
 ```groovy
 dependencies {
-    compile 'uk.co.ribot:easyadapter:1.4.0@aar'
+    compile 'uk.co.ribot:easyadapter:1.5.0@aar'
 }
 ```
 #### 2. Maven
@@ -24,13 +29,13 @@ dependencies {
 <dependency>
     <groupId>uk.co.ribot</groupId>
     <artifactId>easyadapter</artifactId>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
     <type>aar</type>
 </dependency>
 ```
 #### 3. Manual
 
-Download the __[latest Jar](https://raw.github.com/ribot/EasyAdapter/master/downloads/easyadapter-1.4.0.jar)__
+Download the __[latest Jar](https://raw.github.com/ribot/EasyAdapter/master/downloads/easyadapter-1.5.0.jar)__
 
 Sample
 --------------
@@ -148,6 +153,15 @@ public class PersonViewHolder extends ItemViewHolder<Person> {
         public void onButtonClicked(Person person);
     }
 }
+```
+Proguard 
+--------------
+If you are using Proguard you need to add the following rules to `proguard-rules.pro`:
+```
+-keepattributes *Annotation*
+-keepclassmembers class * extends uk.co.ribot.easyadapter.ItemViewHolder {
+    public <init>(...);
+ }
 ```
 
 Build
